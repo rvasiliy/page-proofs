@@ -6,6 +6,7 @@ const clean = require('gulp-clean');
 const concat = require('gulp-concat');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const cmq = require('gulp-combine-mq');
 const watch = require('gulp-watch');
 
 gulp.task('html', function () {
@@ -18,6 +19,7 @@ gulp.task('sass', function () {
         .pipe(sass()).on('error', sass.logError)
         .pipe(autoprefixer())
         .pipe(concat('style.css'))
+        .pipe(cmq({beautify: true}))
         .pipe(gulp.dest('public'));
 });
 
